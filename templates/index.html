@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube to MP3 Converter</title>
+    <link rel="stylesheet" href="/static/css/style.css?v={{ cache_bust }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YouTube to MP3</h1>
+            <p class="subtitle">Paste a YouTube link and download as MP3</p>
+        </header>
+
+        <main>
+            <!-- URL Input -->
+            <div class="card" id="input-card">
+                <div class="input-group">
+                    <input type="text" id="url-input" placeholder="https://www.youtube.com/watch?v=..." autofocus>
+                    <button id="info-btn" onclick="fetchInfo()">
+                        <span id="info-btn-text">Get Info</span>
+                        <span id="info-btn-spinner" class="spinner" hidden></span>
+                    </button>
+                </div>
+                <p id="input-error" class="error" hidden></p>
+            </div>
+
+            <!-- Video Info Card -->
+            <div class="card" id="info-card" hidden>
+                <div class="video-info">
+                    <img id="thumbnail" src="" alt="Video thumbnail">
+                    <div class="video-meta">
+                        <h2 id="video-title"></h2>
+                        <div class="meta-row">
+                            <span class="meta-item" id="video-channel"></span>
+                        </div>
+                        <div class="meta-tags">
+                            <span class="tag" id="video-duration"></span>
+                            <span class="tag" id="video-views"></span>
+                            <span class="tag" id="video-date"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="output-info">
+                    <span class="output-badge">MP3</span>
+                    <span class="output-badge">192 kbps</span>
+                    <span class="output-badge" id="est-size"></span>
+                </div>
+                <div class="actions">
+                    <button id="convert-btn" onclick="startConversion()">Convert to MP3</button>
+                    <button class="secondary" onclick="reset()">Clear</button>
+                </div>
+            </div>
+
+            <!-- Pipeline Steps -->
+            <div class="card" id="pipeline-card" hidden>
+                <div class="pipeline">
+                    <div class="step" id="step-fetch" data-state="pending">
+                        <div class="step-indicator"></div>
+                        <span class="step-label">Fetch</span>
+                    </div>
+                    <div class="step-line" id="line-1"></div>
+                    <div class="step" id="step-download" data-state="pending">
+                        <div class="step-indicator"></div>
+                        <span class="step-label">Download</span>
+                    </div>
+                    <div class="step-line" id="line-2"></div>
+                    <div class="step" id="step-convert" data-state="pending">
+                        <div class="step-indicator"></div>
+                        <span class="step-label">Convert</span>
+                    </div>
+                    <div class="step-line" id="line-3"></div>
+                    <div class="step" id="step-done" data-state="pending">
+                        <div class="step-indicator"></div>
+                        <span class="step-label">Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Card -->
+            <div class="card" id="progress-card" hidden>
+                <div class="progress-header">
+                    <span id="progress-status-text">Starting...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <div class="progress-details" id="progress-details">
+                    <span id="progress-downloaded"></span>
+                    <span id="progress-speed"></span>
+                    <span id="progress-eta"></span>
+                </div>
+            </div>
+
+            <!-- Error Card -->
+            <div class="card card-error" id="error-card" hidden>
+                <div class="error-content">
+                    <div class="error-icon">!</div>
+                    <div class="error-info">
+                        <h3>Conversion Failed</h3>
+                        <p id="error-message"></p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button onclick="retryConversion()">Retry</button>
+                    <button class="secondary" onclick="reset()">Start Over</button>
+                </div>
+            </div>
+
+            <!-- Download Card -->
+            <div class="card card-success" id="done-card" hidden>
+                <div class="done-content">
+                    <div class="done-icon">&#10003;</div>
+                    <div class="done-info">
+                        <h3 id="done-title"></h3>
+                        <p id="done-size"></p>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a id="download-link" class="btn" download>Download MP3</a>
+                    <button class="secondary" onclick="reset()">Convert Another</button>
+                </div>
+            </div>
+
+            <!-- Activity Log -->
+            <div class="card" id="log-card" hidden>
+                <div class="log-header" onclick="toggleLog()">
+                    <span>Activity Log</span>
+                    <span id="log-toggle">&#9660;</span>
+                </div>
+                <div id="log-body" class="log-body">
+                    <div id="log-entries"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>yt-dlp + ffmpeg | For personal use only</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js?v={{ cache_bust }}"></script>
+</body>
+</html>

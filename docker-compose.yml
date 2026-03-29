@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      network: host
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./downloads:/app/downloads
+      - ./templates:/app/templates
+      - ./static:/app/static
+      - ./app.py:/app/app.py
+      - ./config.py:/app/config.py
+      - ./converter.py:/app/converter.py
+      - ./cleanup.py:/app/cleanup.py
+    restart: unless-stopped

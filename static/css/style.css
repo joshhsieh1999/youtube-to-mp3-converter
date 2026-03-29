@@ -1,0 +1,587 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f0f0f;
+    color: #e1e1e1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #ff4444;
+    margin-bottom: 0.2rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Cards */
+.card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #252525;
+}
+
+.card-success {
+    border-color: #2d5a2d;
+    background: #1a2a1a;
+}
+
+.card-error {
+    border-color: #5a2d2d;
+    background: #2a1a1a;
+}
+
+/* Input */
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #0f0f0f;
+    color: #e1e1e1;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #ff4444;
+}
+
+.input-group input::placeholder {
+    color: #555;
+}
+
+.input-group input:disabled {
+    opacity: 0.5;
+}
+
+/* Buttons */
+button, .btn {
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    background: #ff4444;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+button:hover, .btn:hover {
+    background: #e03030;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button.secondary {
+    background: #2a2a2a;
+    color: #999;
+    border: 1px solid #333;
+}
+
+button.secondary:hover {
+    background: #333;
+    color: #ccc;
+}
+
+.error {
+    color: #ff6b6b;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Spinner */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+.spinner[hidden] {
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Video Info */
+.video-info {
+    display: flex;
+    gap: 1rem;
+}
+
+.video-info img {
+    width: 200px;
+    height: 112px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #252525;
+    flex-shrink: 0;
+}
+
+.video-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.video-meta h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta-item {
+    color: #888;
+    font-size: 0.82rem;
+}
+
+.meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+}
+
+.tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: #252525;
+    color: #999;
+    border: 1px solid #333;
+}
+
+/* Output Info */
+.output-info {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #252525;
+}
+
+.output-badge {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: #1a2a1a;
+    color: #4caf50;
+    border: 1px solid #2d5a2d;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* Pipeline Steps */
+.pipeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 0.25rem 0;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 60px;
+}
+
+.step-indicator {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    transition: all 0.3s;
+}
+
+.step[data-state="active"] .step-indicator {
+    border-color: #ff4444;
+    background: #ff4444;
+    box-shadow: 0 0 12px rgba(255, 68, 68, 0.4);
+    animation: pulse 1.5s infinite;
+}
+
+.step[data-state="done"] .step-indicator {
+    border-color: #4caf50;
+    background: #4caf50;
+}
+
+.step[data-state="done"] .step-indicator::after {
+    content: '\2713';
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.step[data-state="error"] .step-indicator {
+    border-color: #ff6b6b;
+    background: #ff6b6b;
+}
+
+.step[data-state="error"] .step-indicator::after {
+    content: '\2717';
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.step-label {
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.step[data-state="active"] .step-label {
+    color: #ff4444;
+    font-weight: 600;
+}
+
+.step[data-state="done"] .step-label {
+    color: #4caf50;
+}
+
+.step[data-state="error"] .step-label {
+    color: #ff6b6b;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background: #333;
+    margin: 0 0.25rem;
+    margin-bottom: 1.3rem;
+    max-width: 60px;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(255, 68, 68, 0.3); }
+    50% { box-shadow: 0 0 16px rgba(255, 68, 68, 0.6); }
+}
+
+/* Progress */
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+#progress-status-text {
+    font-size: 0.85rem;
+    color: #ccc;
+    font-weight: 500;
+}
+
+#progress-percent {
+    font-size: 0.85rem;
+    color: #ff4444;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: #252525;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff4444, #ff6666);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+.progress-bar.starting {
+    background: linear-gradient(90deg, #666, #888);
+    animation: barPulse 1.5s infinite;
+}
+
+.progress-bar.converting {
+    background: linear-gradient(90deg, #ff9800, #ffb74d);
+    animation: barPulse 1.5s infinite;
+}
+
+@keyframes barPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #666;
+    font-variant-numeric: tabular-nums;
+}
+
+.progress-details span:empty {
+    display: none;
+}
+
+/* Error Card */
+.error-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.error-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ff4444;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.error-info {
+    min-width: 0;
+}
+
+.error-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff6b6b;
+}
+
+.error-info p {
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    word-break: break-word;
+}
+
+/* Done Card */
+.done-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.done-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #4caf50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.done-info {
+    min-width: 0;
+}
+
+.done-info h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.done-info p {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.15rem;
+}
+
+/* Activity Log */
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#log-toggle {
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+}
+
+.log-body {
+    margin-top: 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+.log-body.collapsed {
+    display: none;
+}
+
+.log-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.log-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.log-body::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 2px;
+}
+
+.log-entry {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.25rem 0;
+    font-size: 0.78rem;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    line-height: 1.4;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-time {
+    color: #555;
+    flex-shrink: 0;
+    min-width: 55px;
+}
+
+.log-msg {
+    color: #aaa;
+    word-break: break-word;
+}
+
+.log-entry.warn .log-msg {
+    color: #ffb74d;
+}
+
+.log-entry.error .log-msg {
+    color: #ff6b6b;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #444;
+    font-size: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+    .input-group {
+        flex-direction: column;
+    }
+    .video-info {
+        flex-direction: column;
+    }
+    .video-info img {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+    .actions {
+        flex-direction: column;
+    }
+    .pipeline {
+        gap: 0;
+    }
+    .step {
+        min-width: 50px;
+    }
+    .step-label {
+        font-size: 0.6rem;
+    }
+}
