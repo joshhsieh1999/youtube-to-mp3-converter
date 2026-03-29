@@ -127,6 +127,8 @@ function reset() {
     document.getElementById('info-btn-text').textContent = 'Get Info';
     document.getElementById('info-btn-spinner').hidden = true;
     document.getElementById('input-error').hidden = true;
+    document.getElementById('convert-btn').disabled = false;
+    document.getElementById('convert-btn').textContent = 'Convert to MP3';
     document.getElementById('log-entries').innerHTML = '';
 
     hide('info-card');
